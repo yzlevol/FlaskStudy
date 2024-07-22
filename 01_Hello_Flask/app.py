@@ -102,8 +102,18 @@ def test_url_for():
 @app.route('/')
 @app.route('/index')
 def index():
-    user = User.query.first()  # 读取用户记录
+    # user = User.query.first()  # 读取用户记录
     movies = Movie.query.all()  # 读取所有电影记录
-    return render_template('index.html', user=user, movies=movies)
+    return render_template('index.html', movies=movies)
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    # user = User.query.first()
+    return render_template('404.html'), 404
+
+
+@app.context_processor
+def inject_user():
+    user = User.query.first()
+    return dict(user=user)
