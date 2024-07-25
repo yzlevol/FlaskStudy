@@ -1,6 +1,6 @@
-# Page 3
+# 01_Flask_Study Watchlist
 
-Created: June 1, 2024 11:07 PM
+Created: July, 2024
 
 ## **A Simple Watchlist**
 
