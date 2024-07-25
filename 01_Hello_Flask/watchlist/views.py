@@ -1,13 +1,13 @@
-from flask import flash, redirect, render_template, request, url_for
-from flask_login import current_user, login_required, login_user, logout_user
+from flask import render_template, request, url_for, redirect, flash
+from flask_login import login_user, login_required, logout_user, current_user
 
 from watchlist import app, db
-from watchlist.models import Movie, User
+from watchlist.models import User, Movie
 
 
 # 路由和视图函数
 @app.route('/', methods=['GET', 'POST'])
-@app.route('/index')
+# @app.route('/index')
 def index():
     """
     主页视图函数
