@@ -63,8 +63,10 @@ def initdb(drop):
     Initialize the database.
     """
     if drop:
-        db.drop_all()
-    db.create_all()
+        with app.app_context():
+            db.drop_all()
+    with app.app_context():
+        db.create_all()
     click.echo('Initialized database.')  # 输出提示信息
 
 
@@ -73,7 +75,8 @@ def forge():
     """
     Generate fake data.
     """
-    db.create_all()
+    with app.app_context():
+        db.create_all()
 
     name = 'Hyoung'
     movies = [
@@ -107,7 +110,8 @@ def admin(username, password):
     """
     Create user
     """
-    db.create_all()
+    with app.app_context():
+        db.create_all()
 
     user = User.query.first()
     if user is not None:
@@ -268,8 +272,6 @@ def settings():
         return redirect(url_for('index'))
 
     return render_template('settings.html')
-
-
 
 
 @app.route('/hello')
